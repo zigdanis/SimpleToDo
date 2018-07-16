@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0956DD5F20FCB93B0091E78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0956DD5E20FCB93B0091E78F /* AppDelegate.swift */; };
-		0956DD6120FCB93B0091E78F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0956DD6020FCB93B0091E78F /* ViewController.swift */; };
-		0956DD6420FCB93B0091E78F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0956DD6220FCB93B0091E78F /* Main.storyboard */; };
-		0956DD6620FCB93B0091E78F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0956DD6520FCB93B0091E78F /* Assets.xcassets */; };
-		0956DD6920FCB93B0091E78F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0956DD6720FCB93B0091E78F /* LaunchScreen.storyboard */; };
 		0956DD7420FCB93C0091E78F /* SimpleToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0956DD7320FCB93C0091E78F /* SimpleToDoTests.swift */; };
+		0956DD8620FCBBD90091E78F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0956DD7F20FCBBD80091E78F /* LaunchScreen.storyboard */; };
+		0956DD8720FCBBD90091E78F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0956DD8120FCBBD80091E78F /* Main.storyboard */; };
+		0956DD8820FCBBD90091E78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0956DD8420FCBBD80091E78F /* AppDelegate.swift */; };
+		0956DD8920FCBBD90091E78F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0956DD8520FCBBD80091E78F /* ViewController.swift */; };
+		0956DD9020FCBBEC0091E78F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0956DD8E20FCBBEB0091E78F /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,15 +27,15 @@
 
 /* Begin PBXFileReference section */
 		0956DD5B20FCB93B0091E78F /* SimpleToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0956DD5E20FCB93B0091E78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0956DD6020FCB93B0091E78F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0956DD6320FCB93B0091E78F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0956DD6520FCB93B0091E78F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0956DD6820FCB93B0091E78F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0956DD6A20FCB93B0091E78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0956DD6F20FCB93B0091E78F /* SimpleToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleToDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0956DD7320FCB93C0091E78F /* SimpleToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleToDoTests.swift; sourceTree = "<group>"; };
 		0956DD7520FCB93C0091E78F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0956DD8020FCBBD80091E78F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0956DD8220FCBBD80091E78F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0956DD8420FCBBD80091E78F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0956DD8520FCBBD80091E78F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0956DD8E20FCBBEB0091E78F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0956DD8F20FCBBEB0091E78F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +77,9 @@
 		0956DD5D20FCB93B0091E78F /* SimpleToDo */ = {
 			isa = PBXGroup;
 			children = (
-				0956DD5E20FCB93B0091E78F /* AppDelegate.swift */,
-				0956DD6020FCB93B0091E78F /* ViewController.swift */,
-				0956DD6220FCB93B0091E78F /* Main.storyboard */,
-				0956DD6520FCB93B0091E78F /* Assets.xcassets */,
-				0956DD6720FCB93B0091E78F /* LaunchScreen.storyboard */,
-				0956DD6A20FCB93B0091E78F /* Info.plist */,
+				0956DD8320FCBBD80091E78F /* Classes */,
+				0956DD7E20FCBBD80091E78F /* Storyboards */,
+				0956DD8D20FCBBEB0091E78F /* Supporting Files */,
 			);
 			path = SimpleToDo;
 			sourceTree = "<group>";
@@ -94,6 +91,33 @@
 				0956DD7520FCB93C0091E78F /* Info.plist */,
 			);
 			path = SimpleToDoTests;
+			sourceTree = "<group>";
+		};
+		0956DD7E20FCBBD80091E78F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0956DD7F20FCBBD80091E78F /* LaunchScreen.storyboard */,
+				0956DD8120FCBBD80091E78F /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0956DD8320FCBBD80091E78F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0956DD8420FCBBD80091E78F /* AppDelegate.swift */,
+				0956DD8520FCBBD80091E78F /* ViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		0956DD8D20FCBBEB0091E78F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0956DD8E20FCBBEB0091E78F /* Assets.xcassets */,
+				0956DD8F20FCBBEB0091E78F /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,9 +203,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0956DD6920FCB93B0091E78F /* LaunchScreen.storyboard in Resources */,
-				0956DD6620FCB93B0091E78F /* Assets.xcassets in Resources */,
-				0956DD6420FCB93B0091E78F /* Main.storyboard in Resources */,
+				0956DD8620FCBBD90091E78F /* LaunchScreen.storyboard in Resources */,
+				0956DD9020FCBBEC0091E78F /* Assets.xcassets in Resources */,
+				0956DD8720FCBBD90091E78F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,8 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0956DD6120FCB93B0091E78F /* ViewController.swift in Sources */,
-				0956DD5F20FCB93B0091E78F /* AppDelegate.swift in Sources */,
+				0956DD8920FCBBD90091E78F /* ViewController.swift in Sources */,
+				0956DD8820FCBBD90091E78F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,20 +247,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0956DD6220FCB93B0091E78F /* Main.storyboard */ = {
+		0956DD7F20FCBBD80091E78F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0956DD6320FCB93B0091E78F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		0956DD6720FCB93B0091E78F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0956DD6820FCB93B0091E78F /* Base */,
+				0956DD8020FCBBD80091E78F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		0956DD8120FCBBD80091E78F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0956DD8220FCBBD80091E78F /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -353,14 +377,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YC92M3QN6X;
-				INFOPLIST_FILE = SimpleToDo/Info.plist;
+				DEVELOPMENT_TEAM = XMSU8WJG5R;
+				INFOPLIST_FILE = "SimpleToDo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pro.ziganshin.SimpleToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -368,14 +395,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YC92M3QN6X;
-				INFOPLIST_FILE = SimpleToDo/Info.plist;
+				DEVELOPMENT_TEAM = XMSU8WJG5R;
+				INFOPLIST_FILE = "SimpleToDo/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pro.ziganshin.SimpleToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
