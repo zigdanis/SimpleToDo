@@ -25,8 +25,8 @@ class TasksListViewController: UIViewController {
     // MARK: - Setup
     
     private func setupNavigationBar() {
-        title = "Simple ToDo"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        title = "STD"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: R.string.localizable.back(), style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTaskTapped))
     }
     

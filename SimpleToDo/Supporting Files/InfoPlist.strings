@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  SimpleToDo
+
+  Created by Danis Ziganshin on 17/07/2018.
+  Copyright © 2018 ziganshin. All rights reserved.
+*/
+
+"CFBundleDisplayName" = "STD";

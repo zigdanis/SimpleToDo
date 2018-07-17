@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  SimpleToDo
+
+  Created by Danis Ziganshin on 17/07/2018.
+  Copyright © 2018 ziganshin. All rights reserved.
+*/
+
+/* Navigation Title on the screen */
+"New task" = "Новая задача";
+
+/* Navigation Title on the screen */
+"Edit task" = "Редактирование задачи";
+
+/* Back button title */
+"Back" = "Назад";
+
+/* Text View Placeholder */
+"Description" = "Описание";
+
+/* Empty list placeholder */
+"No results founds" = "Нет задач";
+
+/* Empty list placeholder */
+"We can’t find what\nyou’re looking for." = "Мы не нашли то\nчто вы искали.";
+
+/* Empty list placeholder */
+"Try Again!" = "Попробовать снова!";

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 private let placeholderColor = UIColor.lightGray
-private let placeholderText = "Description"
+private let placeholderText = R.string.localizable.description()
 
 class TaskEditViewController: UIViewController {
     

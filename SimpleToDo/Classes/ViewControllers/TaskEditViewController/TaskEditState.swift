@@ -14,7 +14,7 @@ enum TaskEditState {
     
     var navigationTitle: String {
         get {
-            return self == .creating ? "New Task" : "Edit Task"
+            return self == .creating ? R.string.localizable.newTask() : R.string.localizable.editTask()
         }
     }
 }
