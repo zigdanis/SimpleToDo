@@ -17,5 +17,6 @@ class Task: Object {
     convenience init(text: String) {
         self.init()
         self.text = text
+        self.editedAt = Date()
     }
 }

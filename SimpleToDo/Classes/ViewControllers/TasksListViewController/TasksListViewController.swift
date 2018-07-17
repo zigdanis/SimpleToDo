@@ -35,6 +35,7 @@ class TasksListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.placeholdersProvider = .basic
         collectionView.showNoResultsPlaceholder()
+        collectionView.register(R.nib.taskCell)
     }
     
     private func setupViewModelWithCollectionView() {

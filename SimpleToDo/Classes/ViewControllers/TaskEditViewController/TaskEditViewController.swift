@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 private let placeholderColor = UIColor.lightGray
 private let placeholderText = R.string.localizable.description()
@@ -16,6 +18,7 @@ class TaskEditViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     private let state: TaskEditState
+    private var viewModel: TaskEditViewModel!
     
     init(state: TaskEditState) {
         self.state = state
@@ -30,6 +33,7 @@ class TaskEditViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupTextView()
+        setupViewModelWithTextView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,8 +54,16 @@ class TaskEditViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
     }
     
+    private func setupViewModelWithTextView() {
+        let stream = textView.rx.text.asObservable()
+        viewModel = TaskEditViewModel(textStream: stream)
+    }
+    
+    // MARK: - Actions
+    
     @objc private func saveButtonTapped() {
-        // TODO: - Create or Edit Task
+        viewModel.createNewTask()
+        navigationController?.popViewController(animated: true)
     }
 
 }
