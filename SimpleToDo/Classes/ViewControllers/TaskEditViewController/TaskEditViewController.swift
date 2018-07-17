@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 
+private let placeholderColor = UIColor.lightGray
+private let placeholderText = "Description"
+
 class TaskEditViewController: UIViewController {
     
+    @IBOutlet weak var textView: UITextView!
     private let state: TaskEditState
     
     init(state: TaskEditState) {
@@ -25,6 +29,20 @@ class TaskEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupTextView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        textView.becomeFirstResponder()
+    }
+    
+    // MARK: - Setup
+    
+    private func setupTextView() {
+        textView.delegate = self
+        textView.text = placeholderText
+        textView.textColor = placeholderColor
     }
     
     private func setupNavigationBar() {
@@ -35,5 +53,23 @@ class TaskEditViewController: UIViewController {
     @objc private func saveButtonTapped() {
         // TODO: - Create or Edit Task
     }
+
+}
+
+extension TaskEditViewController: UITextViewDelegate {
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == placeholderColor {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = placeholderText
+            textView.textColor = UIColor.lightGray
+        }
+    }
+
 }
