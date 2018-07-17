@@ -11,7 +11,7 @@ import UIKit
 
 class TasksListViewController: UIViewController {
     
-    
+    private var viewModel: TasksListViewModel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -22,7 +22,7 @@ class TasksListViewController: UIViewController {
     // MARK: - Setup
     
     private func setupViewModelWithCollectionView() {
-        
+        viewModel = TasksListViewModel(collectionView: collectionView)
     }
     
 }
