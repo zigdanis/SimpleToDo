@@ -1,4 +1,5 @@
 PODS:
+  - HGPlaceholders (0.3.0)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
@@ -19,6 +20,7 @@ PODS:
     - RxSwift (~> 4.0)
 
 DEPENDENCIES:
+  - HGPlaceholders
   - R.swift
   - RealmSwift
   - RxCocoa
@@ -28,6 +30,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - HGPlaceholders
     - R.swift
     - R.swift.Library
     - Realm
@@ -38,6 +41,7 @@ SPEC REPOS:
     - RxSwiftExt
 
 SPEC CHECKSUMS:
+  HGPlaceholders: 2df01c51b04a30acd0b8c9c7161c7cdde4541109
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Realm: 9527c7baa2260f3a3aad6823d2d71cafff9b046b
@@ -47,6 +51,6 @@ SPEC CHECKSUMS:
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxSwiftExt: 64b7140124629a6a084159735f3714f0fb1c61d6
 
-PODFILE CHECKSUM: 76332835e3ad6b06a725d5667d7efe8499bb36fd
+PODFILE CHECKSUM: dded00671e85a16b6b876c4af577cd03b86305ca
 
 COCOAPODS: 1.5.3

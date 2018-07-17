@@ -11,6 +11,7 @@ target 'SimpleToDo' do
 
   pod 'RealmSwift'
   pod 'R.swift'
+  pod 'HGPlaceholders'
   
   target 'SimpleToDoTests' do
     inherit! :search_paths
