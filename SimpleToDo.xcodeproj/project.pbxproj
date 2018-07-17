@@ -16,6 +16,9 @@
 		0989CAE820FE3A5E0088B101 /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989CAE720FE3A5E0088B101 /* TasksListViewController.swift */; };
 		0989CAEA20FE3B9B0088B101 /* TasksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989CAE920FE3B9B0088B101 /* TasksListViewModel.swift */; };
 		0989CAED20FE42860088B101 /* TaskListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989CAEC20FE42860088B101 /* TaskListViewModelTests.swift */; };
+		0989CAF120FE5C1C0088B101 /* TaskEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989CAF020FE5C1C0088B101 /* TaskEditViewController.swift */; };
+		0989CAF320FE5C4C0088B101 /* TaskEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0989CAF220FE5C4C0088B101 /* TaskEditViewController.xib */; };
+		0989CAF520FE5FB80088B101 /* TaskEditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989CAF420FE5FB80088B101 /* TaskEditState.swift */; };
 		8E2F9D68A8778CE4CD543AEA /* Pods_SimpleToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 291B2763A1185443A0767224 /* Pods_SimpleToDo.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,9 @@
 		0989CAE720FE3A5E0088B101 /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
 		0989CAE920FE3B9B0088B101 /* TasksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewModel.swift; sourceTree = "<group>"; };
 		0989CAEC20FE42860088B101 /* TaskListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModelTests.swift; sourceTree = "<group>"; };
+		0989CAF020FE5C1C0088B101 /* TaskEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditViewController.swift; sourceTree = "<group>"; };
+		0989CAF220FE5C4C0088B101 /* TaskEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskEditViewController.xib; sourceTree = "<group>"; };
+		0989CAF420FE5FB80088B101 /* TaskEditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditState.swift; sourceTree = "<group>"; };
 		1F790B2F9B4187F1B36D3768 /* Pods-SimpleToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleToDo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleToDo/Pods-SimpleToDo.debug.xcconfig"; sourceTree = "<group>"; };
 		291B2763A1185443A0767224 /* Pods_SimpleToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC4A5B97C24A923B07CD934 /* Pods-SimpleToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleToDo/Pods-SimpleToDo.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,10 +154,29 @@
 		0989CAE620FE3A3B0088B101 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0989CAEF20FE5BFA0088B101 /* TaskEditViewController */,
+				0989CAEE20FE5BE60088B101 /* TasksListViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0989CAEE20FE5BE60088B101 /* TasksListViewController */ = {
+			isa = PBXGroup;
+			children = (
 				0989CAE720FE3A5E0088B101 /* TasksListViewController.swift */,
 				0989CAE920FE3B9B0088B101 /* TasksListViewModel.swift */,
 			);
-			path = ViewControllers;
+			path = TasksListViewController;
+			sourceTree = "<group>";
+		};
+		0989CAEF20FE5BFA0088B101 /* TaskEditViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0989CAF020FE5C1C0088B101 /* TaskEditViewController.swift */,
+				0989CAF220FE5C4C0088B101 /* TaskEditViewController.xib */,
+				0989CAF420FE5FB80088B101 /* TaskEditState.swift */,
+			);
+			path = TaskEditViewController;
 			sourceTree = "<group>";
 		};
 		6B052B698A38AE6FEF54346A /* Frameworks */ = {
@@ -263,6 +288,7 @@
 			files = (
 				0956DD8620FCBBD90091E78F /* LaunchScreen.storyboard in Resources */,
 				0956DD9020FCBBEC0091E78F /* Assets.xcassets in Resources */,
+				0989CAF320FE5C4C0088B101 /* TaskEditViewController.xib in Resources */,
 				0956DD8720FCBBD90091E78F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,8 +379,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0989CAE320FE36500088B101 /* Task.swift in Sources */,
+				0989CAF120FE5C1C0088B101 /* TaskEditViewController.swift in Sources */,
 				0989CAEA20FE3B9B0088B101 /* TasksListViewModel.swift in Sources */,
 				0989CAE820FE3A5E0088B101 /* TasksListViewController.swift in Sources */,
+				0989CAF520FE5FB80088B101 /* TaskEditState.swift in Sources */,
 				0956DD8820FCBBD90091E78F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

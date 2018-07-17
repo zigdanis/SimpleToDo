@@ -45,6 +45,10 @@ class TasksListViewModel: NSObject, UICollectionViewDataSource {
         }
     }
     
+    func addNewTask() {
+        
+    }
+    
     // MARK: - UICollectionView DataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

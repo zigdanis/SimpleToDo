@@ -43,7 +43,8 @@ class TasksListViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func addNewTaskTapped() {
-        
+        let taskEditVC = TaskEditViewController(state: .creating)
+        navigationController?.pushViewController(taskEditVC, animated: true)
     }
     
 }
