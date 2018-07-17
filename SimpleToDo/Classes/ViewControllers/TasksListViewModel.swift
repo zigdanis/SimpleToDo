@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class TasksListViewModel: NSObject, UICollectionViewDataSource {
     
@@ -18,10 +19,30 @@ class TasksListViewModel: NSObject, UICollectionViewDataSource {
         self.collectionView = collectionView
         super.init()
         setupCollectionView()
+        reloadTasks()
     }
+    
+    // MARK: - Setup
     
     private func setupCollectionView() {
         collectionView.dataSource = self
+    }
+    
+    // MARK: - Actions
+    
+    func reloadTasks(completion: (() -> Void)? = nil) {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            do {
+                let realm = try Realm()
+                self?.tasks = Array(realm.objects(Task.self))
+            } catch {
+                print("Error occured when tried to load data from Realm")
+            }
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+            completion?()
+        }
     }
     
     // MARK: - UICollectionView DataSource

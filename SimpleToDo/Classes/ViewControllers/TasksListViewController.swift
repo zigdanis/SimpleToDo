@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import HGPlaceholders
 
-class TasksListViewController: UIViewController, UICollectionViewDelegate {
+class TasksListViewController: UIViewController {
     
     private var viewModel: TasksListViewModel!
     @IBOutlet weak var collectionView: CollectionView!
@@ -30,6 +30,7 @@ class TasksListViewController: UIViewController, UICollectionViewDelegate {
     }
     
     private func setupCollectionView() {
+        collectionView.placeholderDelegate = self
         collectionView.delegate = self
         collectionView.placeholdersProvider = .basic
         collectionView.showNoResultsPlaceholder()
@@ -46,4 +47,18 @@ class TasksListViewController: UIViewController, UICollectionViewDelegate {
         print("Add new Task")
     }
     
+}
+
+extension TasksListViewController: UICollectionViewDelegate {
+    
+}
+
+extension TasksListViewController: PlaceholderDelegate {
+
+    func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
+        if placeholder.key == .noResultsKey {
+            collectionView.showLoadingPlaceholder()
+            viewModel.reloadTasks()
+        }
+    }
 }

@@ -13,4 +13,9 @@ class Task: Object {
     @objc dynamic var text: String = ""
     @objc dynamic var editedAt: Date?
     @objc dynamic var isCompleted = false
+    
+    convenience init(text: String) {
+        self.init()
+        self.text = text
+    }
 }
