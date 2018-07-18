@@ -13,13 +13,13 @@ import HGPlaceholders
 class TasksListViewController: UIViewController {
     
     private var viewModel: TasksListViewModel!
-    @IBOutlet weak var collectionView: CollectionView!
+    @IBOutlet weak var tableView: TableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupCollectionView()
-        setupViewModelWithCollectionView()
+        setupTableView()
+        setupViewModel()
     }
     
     // MARK: - Setup
@@ -30,16 +30,16 @@ class TasksListViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTaskTapped))
     }
     
-    private func setupCollectionView() {
-        collectionView.placeholderDelegate = self
-        collectionView.delegate = self
-        collectionView.placeholdersProvider = .basic
-        collectionView.showNoResultsPlaceholder()
-        collectionView.register(R.nib.taskCell)
+    private func setupTableView() {
+        tableView.placeholderDelegate = self
+        tableView.delegate = self
+        tableView.placeholdersProvider = .basic
+        tableView.showNoResultsPlaceholder()
+        tableView.register(R.nib.taskCell)
     }
     
-    private func setupViewModelWithCollectionView() {
-        viewModel = TasksListViewModel(collectionView: collectionView)
+    private func setupViewModel() {
+        viewModel = TasksListViewModel(tableView: tableView)
     }
     
     // MARK: - Actions
@@ -51,7 +51,7 @@ class TasksListViewController: UIViewController {
     
 }
 
-extension TasksListViewController: UICollectionViewDelegate {
+extension TasksListViewController: UITableViewDelegate {
     
 }
 
@@ -59,7 +59,7 @@ extension TasksListViewController: PlaceholderDelegate {
 
     func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
         if placeholder.key == .noResultsKey {
-            collectionView.showLoadingPlaceholder()
+            tableView.showLoadingPlaceholder()
             viewModel.reloadTasks()
         }
     }

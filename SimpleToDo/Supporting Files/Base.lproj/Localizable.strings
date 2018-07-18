@@ -26,3 +26,6 @@
 
 /* Empty list placeholder */
 "Try Again!" = "Try Again!";
+
+/* Date label placeholder */
+"No date" = "No date";

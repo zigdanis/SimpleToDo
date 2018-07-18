@@ -26,3 +26,6 @@
 
 /* Empty list placeholder */
 "Try Again!" = "Попробовать снова!";
+
+/* Date label placeholder */
+"No date" = "Без даты";

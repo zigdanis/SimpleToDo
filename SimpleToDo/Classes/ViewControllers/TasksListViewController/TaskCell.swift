@@ -9,6 +9,34 @@
 import Foundation
 import UIKit
 
-class TaskCell: UICollectionViewCell {
+class TaskCell: UITableViewCell {
+
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var taskTextLabel: UILabel!
+    @IBOutlet weak var checkmarkLabel: UILabel!
+    
+    private let formatter = DateFormatter()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        layer.cornerRadius = 8
+        layer.masksToBounds = true
+        setupDateFormatter()
+    }
+    
+    private func setupDateFormatter() {
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+    }
+    
+    func setup(with task: Task) {
+        if let date = task.editedAt {
+            dateLabel.text = formatter.string(from: date)
+        } else {
+            dateLabel.text = R.string.localizable.noDate()
+        }
+        taskTextLabel.text = task.text
+        checkmarkLabel.text = task.isCompleted ? "✅" : "⚪️"
+    }
     
 }

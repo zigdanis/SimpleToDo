@@ -9,55 +9,95 @@
 import Foundation
 import UIKit
 import RealmSwift
+import RxSwift
+import RxCocoa
+import RxRealm
 
-class TasksListViewModel: NSObject, UICollectionViewDataSource {
+class TasksListViewModel: NSObject {
     
-    var tasks = [Task]()
-    let collectionView: UICollectionView
+    private let db = DisposeBag()
+    private let tableView: UITableView
+    let reloadSignal = PublishSubject<Void>()
+    let tasks = BehaviorRelay<[Task]>(value: [])
     
-    init(collectionView: UICollectionView) {
-        self.collectionView = collectionView
+    init(tableView: UITableView) {
+        self.tableView = tableView
         super.init()
-        setupCollectionView()
-        reloadTasks()
+        setupTableView()
+        maintainLoadingTasks()
     }
     
     // MARK: - Setup
     
-    private func setupCollectionView() {
-        collectionView.dataSource = self
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 140
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    private func maintainLoadingTasks() {
+        let fetchedTasks = reloadSignal
+            .startWith(())
+            .flatMapLatest({ [weak self] _ -> Observable<Results<Task>> in
+                guard let sSelf = self else { throw NSError.deallocatedReference }
+                return sSelf.reloadTasks()
+            })
+            .map({ Array($0) })
+            
+        fetchedTasks
+            .bind(to: tasks)
+            .disposed(by: db)
+        fetchedTasks
+            .subscribe(onNext: { [weak tableView] _ in
+                tableView?.reloadData()
+            })
+            .disposed(by: db)
     }
     
     // MARK: - Actions
     
-    func reloadTasks(completion: (() -> Void)? = nil) {
-        DispatchQueue.global(qos: .background).async { [weak self] in
+    func reloadTasks() -> Observable<Results<Task>> {
+        
+        let realmObjectsReference = Observable<ThreadSafeReference<Results<Task>>>.create { observer -> Disposable in
             do {
                 let realm = try Realm()
-                self?.tasks = Array(realm.objects(Task.self))
+                let tasksEntities = realm.objects(Task.self)
+                    .sorted(byKeyPath: #keyPath(Task.editedAt))
+                let tasksReference = ThreadSafeReference(to: tasksEntities)
+                observer.onNext(tasksReference)
+                observer.onCompleted()
             } catch {
-                print("Error occured when tried to load data from Realm")
+                observer.onError(RxRealmError.unknown)
             }
-            DispatchQueue.main.async {
-                self?.collectionView.reloadData()
-            }
-            completion?()
+            return Disposables.create()
         }
+        return realmObjectsReference
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .observeOn(MainScheduler.instance)
+            .map({ reference -> Results<Task>? in
+                let realm = try Realm()
+                return realm.resolve(reference)
+            })
+            .unwrap()
     }
     
     func addNewTask() {
-        
+        // TODO: - Add new Task
     }
     
-    // MARK: - UICollectionView DataSource
+}
+
+extension TasksListViewModel: UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tasks.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tasks.value.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = R.nib.taskCell.identifier
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskCell
+        let task = tasks.value[indexPath.row]
+        cell.setup(with: task)
         return cell
     }
 }
