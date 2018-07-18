@@ -24,30 +24,30 @@ class TasksListViewModel: NSObject {
         self.tableView = tableView
         super.init()
         setupTableView()
-        maintainLoadingTasks()
+        maintainTasksList()
     }
     
     // MARK: - Setup
     
     private func setupTableView() {
         tableView.dataSource = self
-        tableView.estimatedRowHeight = 140
-        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    private func maintainLoadingTasks() {
+    private func maintainTasksList() {
+        
         let fetchedTasks = reloadSignal
             .startWith(())
-            .flatMapLatest({ [weak self] _ -> Observable<Results<Task>> in
+            .flatMapLatest({ [weak self] _ -> Observable<Array<Task>> in
                 guard let sSelf = self else { throw NSError.deallocatedReference }
-                return sSelf.reloadTasks()
+                return try sSelf.tasksArray()
             })
-            .map({ Array($0) })
-            
+            .share(replay: 1, scope: .whileConnected)
+        
         fetchedTasks
             .bind(to: tasks)
             .disposed(by: db)
         fetchedTasks
+            .debug()
             .subscribe(onNext: { [weak tableView] _ in
                 tableView?.reloadData()
             })
@@ -56,29 +56,11 @@ class TasksListViewModel: NSObject {
     
     // MARK: - Actions
     
-    func reloadTasks() -> Observable<Results<Task>> {
-        
-        let realmObjectsReference = Observable<ThreadSafeReference<Results<Task>>>.create { observer -> Disposable in
-            do {
-                let realm = try Realm()
-                let tasksEntities = realm.objects(Task.self)
-                    .sorted(byKeyPath: #keyPath(Task.editedAt))
-                let tasksReference = ThreadSafeReference(to: tasksEntities)
-                observer.onNext(tasksReference)
-                observer.onCompleted()
-            } catch {
-                observer.onError(RxRealmError.unknown)
-            }
-            return Disposables.create()
-        }
-        return realmObjectsReference
-            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-            .observeOn(MainScheduler.instance)
-            .map({ reference -> Results<Task>? in
-                let realm = try Realm()
-                return realm.resolve(reference)
-            })
-            .unwrap()
+    private func tasksArray() throws -> Observable<Array<Task>> {
+        let realm = try Realm()
+        let tasksEntities = realm.objects(Task.self)
+            .sorted(byKeyPath: #keyPath(Task.editedAt))
+        return Observable.array(from: tasksEntities)
     }
     
     func addNewTask() {

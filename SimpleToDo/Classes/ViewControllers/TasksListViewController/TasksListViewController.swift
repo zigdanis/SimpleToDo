@@ -31,11 +31,13 @@ class TasksListViewController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.placeholderDelegate = self
-        tableView.delegate = self
-        tableView.placeholdersProvider = .basic
         tableView.showNoResultsPlaceholder()
+        tableView.delegate = self
         tableView.register(R.nib.taskCell)
+        tableView.estimatedRowHeight = 140
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.placeholderDelegate = self
+        tableView.placeholdersProvider = .basic
     }
     
     private func setupViewModel() {
@@ -52,7 +54,9 @@ class TasksListViewController: UIViewController {
 }
 
 extension TasksListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension TasksListViewController: PlaceholderDelegate {

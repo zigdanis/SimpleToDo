@@ -19,8 +19,6 @@ class TaskCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.cornerRadius = 8
-        layer.masksToBounds = true
         setupDateFormatter()
     }
     
