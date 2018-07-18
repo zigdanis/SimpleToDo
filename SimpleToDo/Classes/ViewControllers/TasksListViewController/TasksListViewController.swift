@@ -60,7 +60,7 @@ extension TasksListViewController: PlaceholderDelegate {
     func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
         if placeholder.key == .noResultsKey {
             tableView.showLoadingPlaceholder()
-            viewModel.reloadTasks()
+            viewModel.reloadSignal.onNext(())
         }
     }
 }

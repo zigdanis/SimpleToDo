@@ -15,6 +15,7 @@ target 'SimpleToDo' do
   
   target 'SimpleToDoTests' do
     inherit! :search_paths
+    pod 'RxBlocking'
   end
 
 end

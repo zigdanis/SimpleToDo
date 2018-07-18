@@ -17,8 +17,8 @@ class TasksListViewModel: NSObject {
     
     private let db = DisposeBag()
     private let tableView: UITableView
-    let reloadSignal = PublishSubject<Void>()
     let tasks = BehaviorRelay<[Task]>(value: [])
+    let reloadSignal = PublishSubject<Void>()
     
     init(tableView: UITableView) {
         self.tableView = tableView

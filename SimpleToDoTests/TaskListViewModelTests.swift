@@ -9,35 +9,32 @@
 import XCTest
 import UIKit
 import RealmSwift
+import RxBlocking
 @testable import SimpleToDo
 
 class TaskListViewModelTests: XCTestCase {
     
-    var layout: UICollectionViewFlowLayout?
-    var cv: UICollectionView?
+    var tv: UITableView?
     var sut: TasksListViewModel?
     
     override func setUp() {
         super.setUp()
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "InMemoryRealm"
-        layout = UICollectionViewFlowLayout()
-        cv = UICollectionView(frame: .zero, collectionViewLayout: layout!)
-        sut = TasksListViewModel(collectionView: cv!)
+        tv = UITableView(frame: .zero, style: .plain)
+        sut = TasksListViewModel(tableView: tv!)
     }
     
     func testSUT_AfterInit_ShouldBeDataSourceOfCollectionView() {
         XCTAssert(sut != nil)
-        XCTAssert(cv?.dataSource != nil)
-        XCTAssert(cv!.dataSource! === sut!)
+        XCTAssert(tv?.dataSource != nil)
+        XCTAssert(tv!.dataSource! === sut!)
     }
     
     func testSUT_With3TasksInRealm_ShouldLoadThemToTasksProperty() {
         setupRealmWith3Tasks()
-        sut = TasksListViewModel(collectionView: cv!)
-        sut!.reloadTasks(completion: { [weak sut] in
-            XCTAssert(sut!.tasks.count == 3)
-        })
-        
+        sut?.reloadSignal.onNext(())
+        let result = try! sut!.tasks.skip(1).toBlocking().first()
+        XCTAssertEqual(result!.count, 3)
     }
     
     // MARK: - Helpers
