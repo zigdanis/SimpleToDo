@@ -19,9 +19,11 @@ class TaskEditViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     private let state: TaskEditState
     private var viewModel: TaskEditViewModel!
+    private var task: Task?
     
-    init(state: TaskEditState) {
+    init(state: TaskEditState, task: Task? = nil) {
         self.state = state
+        self.task = task
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,7 +35,7 @@ class TaskEditViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupTextView()
-        setupViewModelWithTextView()
+        setupViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,9 +46,7 @@ class TaskEditViewController: UIViewController {
     // MARK: - Setup
     
     private func setupTextView() {
-        textView.delegate = self
-        textView.text = placeholderText
-        textView.textColor = placeholderColor
+        textView.text = task?.text ?? nil
     }
     
     private func setupNavigationBar() {
@@ -54,34 +54,20 @@ class TaskEditViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
     }
     
-    private func setupViewModelWithTextView() {
+    private func setupViewModel() {
         let stream = textView.rx.text.asObservable()
-        viewModel = TaskEditViewModel(textStream: stream)
+        viewModel = TaskEditViewModel(textStream: stream, task: task)
     }
     
     // MARK: - Actions
     
     @objc private func saveButtonTapped() {
-        viewModel.createNewTask()
+        if state == .creating {
+            viewModel.createNewTask()
+        } else {
+            viewModel.editTask()
+        }
         navigationController?.popViewController(animated: true)
-    }
-
-}
-
-extension TaskEditViewController: UITextViewDelegate {
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == placeholderColor {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = placeholderText
-            textView.textColor = UIColor.lightGray
-        }
     }
 
 }

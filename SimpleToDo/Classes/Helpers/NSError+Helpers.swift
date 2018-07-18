@@ -17,4 +17,10 @@ extension NSError {
             return NSError(domain: domainName, code: 1000, userInfo: [NSLocalizedDescriptionKey: "Referenced object were deallocated"])
         }
     }
+    
+    static var missingValue: NSError {
+        get {
+            return NSError(domain: domainName, code: 1001, userInfo: [NSLocalizedDescriptionKey: "Referenced object missing value"])
+        }
+    }
 }

@@ -47,7 +47,6 @@ class TasksListViewModel: NSObject {
             .bind(to: tasks)
             .disposed(by: db)
         fetchedTasks
-            .debug()
             .subscribe(onNext: { [weak tableView] _ in
                 tableView?.reloadData()
             })

@@ -54,8 +54,12 @@ class TasksListViewController: UIViewController {
 }
 
 extension TasksListViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let task = viewModel.tasks.value[indexPath.row]
+        let editVC = TaskEditViewController(state: .editing, task: task)
+        navigationController?.pushViewController(editVC, animated: true)
     }
 }
 

@@ -17,10 +17,16 @@ class TaskEditViewModel {
     private let db = DisposeBag()
     private let textStream: Observable<String?>
     private let newTaskSignal = PublishSubject<Void>()
+    private let editTaskSignal = PublishSubject<Void>()
+    private var taskId: ThreadSafeReference<Task>?
     
-    init(textStream: Observable<String?>) {
+    init(textStream: Observable<String?>, task: Task? = nil) {
         self.textStream = textStream
+        if let task = task {
+            self.taskId = ThreadSafeReference(to: task)
+        }
         maintainNewTaskSaving()
+        maintainEditingTask()
     }
     
     // MARK: - Setup
@@ -31,9 +37,21 @@ class TaskEditViewModel {
             .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .flatMapLatest({ [weak self] text -> Observable<Task> in
                 guard let sSelf = self else { throw NSError.deallocatedReference }
-                return try sSelf.saveTaskToRealm(text: text)
+                return try sSelf.saveNewTaskToRealm(text: text)
             })
-            .debug()
+            .subscribe()
+            .disposed(by: db)
+    }
+    
+    private func maintainEditingTask() {
+        editTaskSignal.withLatestFrom(textStream) { $1 }
+            .unwrap()
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .flatMapLatest({ [weak self] text -> Observable<Task> in
+                guard let sSelf = self else { throw NSError.deallocatedReference }
+                guard let taskId = sSelf.taskId else { throw NSError.missingValue }
+                return try sSelf.editTaskInRealm(text: text, taskId: taskId)
+            })
             .subscribe()
             .disposed(by: db)
     }
@@ -44,7 +62,11 @@ class TaskEditViewModel {
         newTaskSignal.onNext(())
     }
     
-    private func saveTaskToRealm(text: String) throws -> Observable<Task> {
+    func editTask() {
+        editTaskSignal.onNext(())
+    }
+    
+    private func saveNewTaskToRealm(text: String) throws -> Observable<Task> {
         return Observable<Task>.create { observer -> Disposable in
             do {
                 let task = Task(text: text)
@@ -61,4 +83,23 @@ class TaskEditViewModel {
         }
         
     }
+
+    private func editTaskInRealm(text: String, taskId: ThreadSafeReference<Task>) throws -> Observable<Task> {
+        return Observable<Task>.create { observer -> Disposable in
+            do {
+                let realm = try Realm()
+                guard let realmTask = realm.resolve(taskId) else { throw NSError.missingValue }
+                try realm.write {
+                    realmTask.text = text
+                }
+                observer.onNext(realmTask)
+                observer.onCompleted()
+            } catch {
+                observer.onError(RxRealmError.unknown)
+            }
+            return Disposables.create()
+        }
+        
+    }
+
 }
