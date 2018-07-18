@@ -62,8 +62,12 @@ class TasksListViewModel: NSObject {
         return Observable.array(from: tasksEntities)
     }
     
-    func addNewTask() {
-        // TODO: - Add new Task
+    func toggleCompletedState(for task: Task) throws {
+        let realm = try Realm()
+        guard task.realm == realm, !task.isInvalidated else { throw RxRealmError.unknown }
+        try realm.write {
+            task.isCompleted = !task.isCompleted
+        }
     }
     
 }
@@ -81,4 +85,5 @@ extension TasksListViewModel: UITableViewDataSource {
         cell.setup(with: task)
         return cell
     }
+    
 }

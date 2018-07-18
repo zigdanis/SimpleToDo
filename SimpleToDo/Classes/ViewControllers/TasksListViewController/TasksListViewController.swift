@@ -61,6 +61,27 @@ extension TasksListViewController: UITableViewDelegate {
         let editVC = TaskEditViewController(state: .editing, task: task)
         navigationController?.pushViewController(editVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let flagAction = toggleFlagAction(at: indexPath, for: tableView)
+        return UISwipeActionsConfiguration(actions: [flagAction])
+    }
+    
+    private func toggleFlagAction(at indexPath: IndexPath, for table: UITableView) -> UIContextualAction {
+        let task = viewModel.tasks.value[indexPath.row]
+        let title = task.isCompleted ? "⚪️" : "✅"
+        let action = UIContextualAction(style: .normal, title: title) { [weak viewModel] (_, _, completion) in
+            do {
+                try viewModel?.toggleCompletedState(for: task)
+            } catch {
+                completion(false)
+            }
+            table.reloadRows(at: [indexPath], with: .none)
+            completion(true)
+        }
+        action.backgroundColor = task.isCompleted ? UIColor.gray : UIColor.orange
+        return action
+    }
 }
 
 extension TasksListViewController: PlaceholderDelegate {
