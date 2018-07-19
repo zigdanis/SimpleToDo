@@ -91,6 +91,7 @@ class TaskEditViewModel {
                 guard let realmTask = realm.resolve(taskId) else { throw NSError.missingValue }
                 try realm.write {
                     realmTask.text = text
+                    realmTask.editedAt = Date()
                 }
                 observer.onNext(realmTask)
                 observer.onCompleted()

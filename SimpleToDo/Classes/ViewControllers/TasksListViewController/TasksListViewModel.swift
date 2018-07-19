@@ -63,7 +63,7 @@ class TasksListViewModel: NSObject {
     private func tasksArray() throws -> Observable<Array<Task>> {
         let realm = try Realm()
         let tasksEntities = realm.objects(Task.self)
-            .sorted(byKeyPath: #keyPath(Task.editedAt))
+            .sorted(byKeyPath: #keyPath(Task.editedAt), ascending: false)
         return Observable.array(from: tasksEntities)
     }
     
