@@ -62,6 +62,7 @@ class TaskEditViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func saveButtonTapped() {
+        guard !textView.text.isEmpty else { return }
         if state == .creating {
             viewModel.createNewTask()
         } else {

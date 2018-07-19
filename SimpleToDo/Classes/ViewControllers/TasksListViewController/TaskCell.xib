@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,12 +25,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do some work Using this list: 1. Make list 2. Complete it 3. Good job!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaO-W7-Ahh">
-                        <rect key="frame" x="16" y="35" width="109.5" height="101.5"/>
+                        <rect key="frame" x="16" y="35" width="308" height="101.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC2-Ve-rvq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="✅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC2-Ve-rvq">
                         <rect key="frame" x="328" y="65.5" width="23" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -42,6 +41,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="RC2-Ve-rvq" secondAttribute="trailing" constant="8" id="2sp-I9-O4i"/>
                     <constraint firstItem="gQP-83-cWL" firstAttribute="top" secondItem="VDd-GG-4vi" secondAttribute="topMargin" id="Brd-Hh-aIB"/>
                     <constraint firstItem="gQP-83-cWL" firstAttribute="leading" secondItem="VDd-GG-4vi" secondAttribute="leadingMargin" id="I5N-22-dDe"/>
+                    <constraint firstItem="RC2-Ve-rvq" firstAttribute="leading" secondItem="YaO-W7-Ahh" secondAttribute="trailing" constant="4" id="Lgd-le-juD"/>
                     <constraint firstItem="YaO-W7-Ahh" firstAttribute="leading" secondItem="VDd-GG-4vi" secondAttribute="leadingMargin" id="bw5-x8-rtY"/>
                     <constraint firstItem="RC2-Ve-rvq" firstAttribute="centerY" secondItem="VDd-GG-4vi" secondAttribute="centerY" id="lNJ-GD-NKo"/>
                     <constraint firstItem="YaO-W7-Ahh" firstAttribute="top" secondItem="gQP-83-cWL" secondAttribute="bottom" constant="8" id="whS-oW-7sc"/>
