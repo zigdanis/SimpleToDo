@@ -64,7 +64,22 @@ extension TasksListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let flagAction = toggleFlagAction(at: indexPath, for: tableView)
-        return UISwipeActionsConfiguration(actions: [flagAction])
+        let delAction = deleteAction(at: indexPath, for: tableView)
+        return UISwipeActionsConfiguration(actions: [delAction, flagAction])
+    }
+    
+    private func deleteAction(at indexPath: IndexPath, for table: UITableView) -> UIContextualAction {
+        let task = viewModel.tasks.value[indexPath.row]
+        let action = UIContextualAction(style: .normal, title: R.string.localizable.delete()) { [weak self] (_, _, completion) in
+            do {
+                try self?.viewModel.delete(task: task)
+                completion(true)
+            } catch {
+                completion(false)
+            }
+        }
+        action.backgroundColor = .red
+        return action
     }
     
     private func toggleFlagAction(at indexPath: IndexPath, for table: UITableView) -> UIContextualAction {
@@ -73,11 +88,10 @@ extension TasksListViewController: UITableViewDelegate {
         let action = UIContextualAction(style: .normal, title: title) { [weak viewModel] (_, _, completion) in
             do {
                 try viewModel?.toggleCompletedState(for: task)
+                completion(true)
             } catch {
                 completion(false)
             }
-            table.reloadRows(at: [indexPath], with: .none)
-            completion(true)
         }
         action.backgroundColor = task.isCompleted ? UIColor.gray : UIColor.orange
         return action

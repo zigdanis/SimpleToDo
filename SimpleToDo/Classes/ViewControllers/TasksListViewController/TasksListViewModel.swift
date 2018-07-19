@@ -12,6 +12,7 @@ import RealmSwift
 import RxSwift
 import RxCocoa
 import RxRealm
+import HGPlaceholders
 
 class TasksListViewModel: NSObject {
     
@@ -43,7 +44,7 @@ class TasksListViewModel: NSObject {
             })
             .share(replay: 1, scope: .whileConnected)
         
-        fetchedTasks
+        fetchedTasks 
             .bind(to: tasks)
             .disposed(by: db)
         fetchedTasks
@@ -67,6 +68,14 @@ class TasksListViewModel: NSObject {
         guard task.realm == realm, !task.isInvalidated else { throw RxRealmError.unknown }
         try realm.write {
             task.isCompleted = !task.isCompleted
+        }
+    }
+    
+    func delete(task: Task) throws {
+        let realm = try Realm()
+        guard task.realm == realm, !task.isInvalidated else { throw RxRealmError.unknown }
+        try realm.write {
+            realm.delete(task)
         }
     }
     

@@ -29,3 +29,6 @@
 
 /* Date label placeholder */
 "No date" = "Без даты";
+
+/* Delete button title */
+"Delete" = "Удалить";
