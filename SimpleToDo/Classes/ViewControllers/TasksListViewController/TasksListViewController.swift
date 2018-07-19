@@ -54,9 +54,15 @@ class TasksListViewController: UIViewController {
     private func setupReminder(for task: Task) {
         let title = R.string.localizable.remindMeAfter()
         let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: R.string.localizable.oneMinute() , style: .default, handler: nil))
-        actionSheet.addAction(UIAlertAction(title: R.string.localizable.fiveMinutes() , style: .default, handler: nil))
-        actionSheet.addAction(UIAlertAction(title: R.string.localizable.oneHour() , style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: R.string.localizable.oneMinute() , style: .default, handler: { [weak viewModel] _ in
+            viewModel?.setReminder(for: task, length: .oneMinute)
+        }))
+        actionSheet.addAction(UIAlertAction(title: R.string.localizable.fiveMinutes() , style: .default, handler: { [weak viewModel] _ in
+            viewModel?.setReminder(for: task, length: .fiveMinutes)
+        }))
+        actionSheet.addAction(UIAlertAction(title: R.string.localizable.oneHour() , style: .default, handler: { [weak viewModel] _ in
+            viewModel?.setReminder(for: task, length: .oneHour)
+        }))
         actionSheet.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil))
         present(actionSheet, animated: true)
     }

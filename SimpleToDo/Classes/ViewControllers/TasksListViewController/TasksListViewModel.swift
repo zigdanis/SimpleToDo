@@ -83,6 +83,9 @@ class TasksListViewModel: NSObject {
         }
     }
     
+    func setReminder(for task: Task, length: ReminderLength) {
+        NotificationsManager.instance.scheduleNotification(for: task, at: length)
+    }
 }
 
 extension TasksListViewModel: UITableViewDataSource {

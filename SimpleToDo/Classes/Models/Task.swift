@@ -13,6 +13,11 @@ class Task: Object {
     @objc dynamic var text: String = ""
     @objc dynamic var editedAt: Date?
     @objc dynamic var isCompleted = false
+    @objc dynamic var identifier = UUID().uuidString
+    
+    override static func primaryKey() -> String? {
+        return "identifier"
+    }
     
     convenience init(text: String) {
         self.init()

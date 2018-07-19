@@ -26,6 +26,8 @@
 		0989CAF120FE5C1C0088B101 /* TaskEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989CAF020FE5C1C0088B101 /* TaskEditViewController.swift */; };
 		0989CAF320FE5C4C0088B101 /* TaskEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0989CAF220FE5C4C0088B101 /* TaskEditViewController.xib */; };
 		0989CAF520FE5FB80088B101 /* TaskEditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0989CAF420FE5FB80088B101 /* TaskEditState.swift */; };
+		09D9F2F92100812D00719883 /* ReminderLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9F2F82100812D00719883 /* ReminderLength.swift */; };
+		09D9F2FB210081B400719883 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D9F2FA210081B400719883 /* NotificationsManager.swift */; };
 		8E2F9D68A8778CE4CD543AEA /* Pods_SimpleToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 291B2763A1185443A0767224 /* Pods_SimpleToDo.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		0989CAF020FE5C1C0088B101 /* TaskEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditViewController.swift; sourceTree = "<group>"; };
 		0989CAF220FE5C4C0088B101 /* TaskEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskEditViewController.xib; sourceTree = "<group>"; };
 		0989CAF420FE5FB80088B101 /* TaskEditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditState.swift; sourceTree = "<group>"; };
+		09D9F2F82100812D00719883 /* ReminderLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderLength.swift; sourceTree = "<group>"; };
+		09D9F2FA210081B400719883 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		1F790B2F9B4187F1B36D3768 /* Pods-SimpleToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleToDo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleToDo/Pods-SimpleToDo.debug.xcconfig"; sourceTree = "<group>"; };
 		291B2763A1185443A0767224 /* Pods_SimpleToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC4A5B97C24A923B07CD934 /* Pods-SimpleToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleToDo/Pods-SimpleToDo.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				0956DD8420FCBBD80091E78F /* AppDelegate.swift */,
+				09D9F2FA210081B400719883 /* NotificationsManager.swift */,
 				090B896320FE81C0003AAA4A /* Helpers */,
 				0989CAE620FE3A3B0088B101 /* ViewControllers */,
 				0989CADF20FE36250088B101 /* Models */,
@@ -192,6 +197,7 @@
 			children = (
 				0989CAE720FE3A5E0088B101 /* TasksListViewController.swift */,
 				0989CAE920FE3B9B0088B101 /* TasksListViewModel.swift */,
+				09D9F2F82100812D00719883 /* ReminderLength.swift */,
 				090B896620FE879B003AAA4A /* TaskCell.swift */,
 				090B896820FE87DA003AAA4A /* TaskCell.xib */,
 			);
@@ -447,7 +453,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D9F2F92100812D00719883 /* ReminderLength.swift in Sources */,
 				0989CAE320FE36500088B101 /* Task.swift in Sources */,
+				09D9F2FB210081B400719883 /* NotificationsManager.swift in Sources */,
 				090B895E20FE76FA003AAA4A /* R.generated.swift in Sources */,
 				090B896520FE81CF003AAA4A /* NSError+Helpers.swift in Sources */,
 				0989CAF120FE5C1C0088B101 /* TaskEditViewController.swift in Sources */,
