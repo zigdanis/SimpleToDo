@@ -5,13 +5,13 @@
 iOS app with the list of tasks.
 Tasks can be created, edited and deleted.
 Tasks can be checked as completed.
-For each task could be scheduled local notification that will fire when the specified time will pass.
+For each task local notification could be scheduled that will fire when the specified time will pass.
 
 ### Russian
 
 iOS приложение со списком задач.
 Задачи могу создаваться, редактироваться и удаляться.
-Задачи можно отметиь как выполненные.
+Задачи можно отметить как выполненные.
 Для каждой задачи можно запланировать напоминание которое сработает через заданное время.
 
 ## Installing
