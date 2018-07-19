@@ -32,7 +32,7 @@ class TaskListViewModelTests: XCTestCase {
     
     func testSUT_With3TasksInRealm_ShouldLoadThemToTasksProperty() {
         setupRealmWith3Tasks()
-        sut?.reloadSignal.onNext(())
+        sut?.reloadTasksList()
         do {
             let result = try sut!.tasks.toBlocking(timeout: 1).first()
             XCTAssertEqual(result!.count, 3)

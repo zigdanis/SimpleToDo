@@ -14,7 +14,14 @@ enum TaskEditState {
     
     var navigationTitle: String {
         get {
-            return self == .creating ? R.string.localizable.newTask() : R.string.localizable.editTask()
+            if self == .creating {
+                return R.string.localizable.newTask()
+            } else if self == .editing {
+                return R.string.localizable.editTask()
+            } else {
+                assertionFailure("Unknown message for enum value")
+                return "Undefined"
+            }
         }
     }
 }
