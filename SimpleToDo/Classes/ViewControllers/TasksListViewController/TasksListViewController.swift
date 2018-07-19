@@ -51,6 +51,16 @@ class TasksListViewController: UIViewController {
         navigationController?.pushViewController(taskEditVC, animated: true)
     }
     
+    private func setupReminder(for task: Task) {
+        let title = R.string.localizable.remindMeAfter()
+        let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: R.string.localizable.oneMinute() , style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: R.string.localizable.fiveMinutes() , style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: R.string.localizable.oneHour() , style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil))
+        present(actionSheet, animated: true)
+    }
+    
 }
 
 extension TasksListViewController: UITableViewDelegate {
@@ -60,6 +70,11 @@ extension TasksListViewController: UITableViewDelegate {
         let task = viewModel.tasks.value[indexPath.row]
         let editVC = TaskEditViewController(state: .editing, task: task)
         navigationController?.pushViewController(editVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let reminderAction = setReminderAction(at: indexPath, for: tableView)
+        return UISwipeActionsConfiguration(actions: [reminderAction])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -96,6 +111,18 @@ extension TasksListViewController: UITableViewDelegate {
         action.backgroundColor = task.isCompleted ? UIColor.gray : UIColor.orange
         return action
     }
+    
+    private func setReminderAction(at indexPath: IndexPath, for table: UITableView) -> UIContextualAction {
+        let task = viewModel.tasks.value[indexPath.row]
+        let action = UIContextualAction(style: .normal, title: "🔔") { [weak self] (_, _, completion) in
+            self?.setupReminder(for: task)
+            completion(true)
+        }
+        action.backgroundColor = .blue
+        return action
+    }
+    
+    
 }
 
 extension TasksListViewController: PlaceholderDelegate {
@@ -103,7 +130,7 @@ extension TasksListViewController: PlaceholderDelegate {
     func view(_ view: Any, actionButtonTappedFor placeholder: Placeholder) {
         if placeholder.key == .noResultsKey {
             tableView.showLoadingPlaceholder()
-            viewModel.reloadSignal.onNext(())
+            viewModel.reloadTasksList()
         }
     }
 }

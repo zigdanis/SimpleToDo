@@ -18,8 +18,8 @@ class TasksListViewModel: NSObject {
     
     private let db = DisposeBag()
     private let tableView: UITableView
+    private let reloadSignal = PublishSubject<Void>()
     let tasks = BehaviorRelay<[Task]>(value: [])
-    let reloadSignal = PublishSubject<Void>()
     
     init(tableView: UITableView) {
         self.tableView = tableView
@@ -55,6 +55,10 @@ class TasksListViewModel: NSObject {
     }
     
     // MARK: - Actions
+    
+    func reloadTasksList() {
+        reloadSignal.onNext(())
+    }
     
     private func tasksArray() throws -> Observable<Array<Task>> {
         let realm = try Realm()

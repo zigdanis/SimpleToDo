@@ -32,3 +32,18 @@
 
 /* Delete button title */
 "Delete" = "Delete";
+
+/* Reminders Action Sheet title */
+"Remind me after" = "Remind me after:";
+
+/* Reminders Action Sheet item */
+"one minute" = "1 minute";
+
+/* Reminders Action Sheet item */
+"five minutes" = "5 minutes";
+
+/* Reminders Action Sheet item */
+"one hour" = "1 hour";
+
+/* Cancel button title */
+"Cancel" = "Cancel";

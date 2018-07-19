@@ -32,3 +32,18 @@
 
 /* Delete button title */
 "Delete" = "Удалить";
+
+/* Reminders Action Sheet title */
+"Remind me after" = "Напомнить мне через:";
+
+/* Reminders Action Sheet item */
+"one minute" = "1 минуту";
+
+/* Reminders Action Sheet item */
+"five minutes" = "5 минут";
+
+/* Reminders Action Sheet item */
+"one hour" = "1 час";
+
+/* Cancel button title */
+"Cancel" = "Отмена";
